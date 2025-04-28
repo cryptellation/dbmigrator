@@ -27,10 +27,15 @@ type DBMigrator struct{}
 func (ci *DBMigrator) PublishTag(
 	ctx context.Context,
 	sourceDir *dagger.Directory,
+	user *string,
 	token *dagger.Secret,
 ) error {
 	// Create Git repo access
-	repo, err := NewGit(ctx, sourceDir, token)
+	repo, err := NewGit(ctx, NewGitOptions{
+		SrcDir: sourceDir,
+		User:   user,
+		Token:  token,
+	})
 	if err != nil {
 		return err
 	}
