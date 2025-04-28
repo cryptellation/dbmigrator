@@ -1,4 +1,4 @@
-package dbmig
+package dbmigrator
 
 import (
 	"context"
